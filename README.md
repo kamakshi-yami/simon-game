@@ -1,22 +1,35 @@
 # 🎮 Simon Game (Web Version)
 
-A classic memory skill game built for the web. This project currently features the complete **User Interface (UI)** designed with HTML5 and CSS3, featuring a clean, centered grid layout.
+A classic memory skill game built for the web. This project features a complete **User Interface (UI)** and is currently implementing the core **JavaScript logic** for game sequences and level tracking.
 
-> **Current Status:** 🚧 *Work in Progress* (UI complete, JavaScript Logic in development).
+> **Current Status:** 🚧 *Work in Progress* (UI complete, Game Initialization & Flash logic implemented. User input validation in progress).
 
 ## 🚀 About The Project
 
 The goal of this project is to recreate the famous "Simon" electronic game where players must repeat random sequences of lights.
-* **Current State:** The visual structure is fully responsive and styled. The four game pads (Pink, Blue, Orange, Purple) are laid out using **CSS Grid**.
-* **Next Steps:** Implementing the JavaScript game logic to handle user input, game sequences, and level progression.
+* **Current State:** The visual structure is fully responsive. The JavaScript engine now successfully starts the game on keypress, tracks levels, and generates a random color flash to start the sequence.
+* **Next Steps:** Completing the event listeners for the buttons so the game can check if the user's clicks match the generated sequence.
 
 ## 🛠️ Tech Stack
 
 * **HTML5:** Semantic structure for the game board.
-* **CSS3:** Styling and Layout.
-    * **Flexbox:** Used to center the game board on the screen.
-    * **CSS Grid:** Used to create the perfect 2x2 layout for the game pads.
+* **CSS3:** Styling, Flexbox, and CSS Grid layout.
+* **JavaScript:** DOM manipulation, event handling, and randomized sequence generation.
 
 ## 🎨 Code Highlights
 
-The game board layout uses **CSS Grid** for precise positioning of the four buttons, ensuring they stay aligned with a specific gap:
+The JavaScript logic now handles dynamic level progression and random color selection to build the game's sequence:
+
+```javascript
+function levelUp() {
+    level++;
+    h2.innerText = `Level ${level}`;
+    
+    // Generates a random number from 0 to 3 to pick a color
+    let num = Math.floor(Math.random() * 4);
+    let randomColor = color[num];
+    
+    // Triggers the visual flash effect
+    let radBtn = document.querySelector(`.${randomColor}`);
+    flash(radBtn);
+}
